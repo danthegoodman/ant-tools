@@ -5,9 +5,14 @@
 	<property name="out.dir" location="out"/>
 	<property name="jar.file" location="ant-tools.jar"/>
 
+	<path id="src.libpath">
+		<fileset dir="/usr/share/java" includes="junit.jar"/>
+	</path>
+
 	<target name="javac" description="Compile Project">
 		<mkdir dir="${out.dir}" />
 		<javac destdir="${out.dir}" debug="true" includeantruntime="true">
+			<classpath refid="src.libpath" />
 			<src path="${src.dir}" />
 		</javac>
 	</target>

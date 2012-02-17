@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="ant-tools" default="jar" basedir=".">
+
+	<property name="src.dir" location="src"/>
+	<property name="out.dir" location="out"/>
+	<property name="jar.file" location="ant-tools.jar"/>
+
+	<target name="javac" description="Compile Project">
+		<mkdir dir="${out.dir}" />
+		<javac destdir="${out.dir}" debug="true" includeantruntime="true">
+			<src path="${src.dir}" />
+		</javac>
+	</target>
+
+	<target name="jar" depends="javac" description="Build Jar">
+		<delete file="${jar.file}"/>
+		<jar jarfile="${jar.file}" compress="true">
+			<fileset dir="${out.dir}">
+				<include name="**/" />
+			</fileset>
+			<fileset dir="${src.dir}">
+				<include name="**/" />
+			</fileset>
+		</jar>
+	</target>
+
+	<target name="clean" description="Clean Project">
+		<delete dir="${out.dir}" />
+	</target>
+
+</project>
